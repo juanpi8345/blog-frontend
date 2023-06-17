@@ -21,6 +21,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { authInterceptorProviders } from './services/token.interceptor';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 import { AgregarCategoriaComponent } from './pages/agregar-categoria/agregar-categoria.component';
+import { CategoriaComponent } from './pages/categoria/categoria.component';
+import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar-publicacion.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { AgregarCategoriaComponent } from './pages/agregar-categoria/agregar-cat
     SidebarComponent,
     RegistrarseComponent,
     AgregarCategoriaComponent,
+    CategoriaComponent,
+    AgregarPublicacionComponent,
   ],
   imports: [
     BrowserModule,

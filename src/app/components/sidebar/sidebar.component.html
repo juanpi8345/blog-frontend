@@ -1,8 +1,8 @@
 <mat-card class="p-2">
   <mat-card-header>Categorias</mat-card-header>
   <mat-card-content class="mt-2">
-    <div class="mt-2" *ngFor="let categoria of categorias">
-      <button mat-stroked-button color="warn">
+    <div class="mt-2" *ngFor="let categoria of categorias;">
+      <button mat-stroked-button color="warn" [routerLink]="'categoria/'+categoria.categoriaId">
         <mat-icon class="mat-18">book</mat-icon> {{categoria.nombre}}
       </button>
     </div>

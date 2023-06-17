@@ -1,0 +1,20 @@
+<mat-card class="p-2 aparecer">
+    <div class="container-fluid">
+        <div *ngFor="let publicacion of publicaciones">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{publicacion.titulo}}</h1>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="!publicaciones">
+            <h2>No hay publicaciones en esta categoria</h2>
+        </div>
+        <mat-card-actions>
+            <button mat-raised-button color="warn" [routerLink]="'/dashboard/agregar-publicacion/'+categoriaId">
+                <mat-icon>add</mat-icon> Agregar publicacion
+            </button>
+        </mat-card-actions>
+    </div>
+</mat-card>

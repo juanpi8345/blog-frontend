@@ -17,6 +17,7 @@ export class SidebarComponent {
   ngOnInit():void{
     this.categoriaService.obtenerCategorias().subscribe((data:Categoria[])=>{
       this.categorias = data;
+      console.log(data);
     },()=>{
       Swal.fire("Error al cargar","Error al cargar categorias de posts","error");
     })
