@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center aparecer">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <mat-card class="mt-5 pe-5 ps-5 pb-4 pt-4">
@@ -14,7 +14,7 @@
                     </mat-form-field>
                     <mat-form-field class="w-100 mb-3" appearance="outline">
                         <mat-label>Clave</mat-label>
-                        <input required name="password" matInput placeholder="Ingresa tu clave" [(ngModel)]="user.password">
+                        <input type="password" required name="password" matInput placeholder="Ingresa tu clave" [(ngModel)]="user.password">
                         <mat-hint>La clave debe ser valida</mat-hint>
                     </mat-form-field>
                     <div class="container text-center">

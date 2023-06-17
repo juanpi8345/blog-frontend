@@ -10,3 +10,16 @@ a{
 mat-icon{
     vertical-align: middle;
 }
+
+.aparecer{
+    animation: aparecer 1s forwards;
+}
+
+@keyframes aparecer{
+
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}

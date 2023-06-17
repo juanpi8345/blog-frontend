@@ -32,10 +32,14 @@ export class IniciarSesionComponent {
   }
 
   public iniciarSesion() {
-
-
-    this.loginService.generarToken(this.user).subscribe(data => {
-      console.log(data);
+    this.loginService.generarToken(this.user).subscribe((data:any) => {
+      this.loginService.loginUser(data.token);
+      this.loginService.getCurrentUser().subscribe((user:Usuario)=>{
+        this.loginService.setUser(user);
+        console.log(user);
+        this.loginService.loginStatusSubject.next(true);
+        this.router.navigate(['/dashboard']);
+      })
     }, err => {
       this.snack.open("Credenciales incorrectas", "Aceptar", {
         duration: 3000

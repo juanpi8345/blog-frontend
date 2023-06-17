@@ -10,7 +10,7 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  public loginStatusSubject = new Subject<boolean>();
+  public loginStatusSubject = new Subject<any>();
 
   private apiUrl : string = "http://localhost:8080/";
 
@@ -52,7 +52,7 @@ export class LoginService {
     }
   }
 
-  public getUserRol(){
+  public getUserRol():string{
     let user = this.getUser();
     return user.authorities[0].authority;
   }

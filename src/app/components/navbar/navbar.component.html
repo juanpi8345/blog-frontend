@@ -5,8 +5,10 @@
         <span class="fs-4">Blog</span>
       </div>
       <div>
-        <button mat-raised-button color="warn" class="me-3">Iniciar sesion</button>
-        <button mat-raised-button color="warn" >Registrarse</button>
+        <button mat-raised-button color="warn" class="me-3" *ngIf="!logged" routerLink="/iniciar-sesion">Iniciar sesion</button>
+        <button mat-raised-button color="warn" *ngIf="!logged" routerLink="/registrarse">Registrarse</button>
+        <button mat-raised-button color="warn" class="me-3" *ngIf="logged">{{rol}}</button>
+        <button mat-raised-button color="warn" *ngIf="logged" (click)="cerrarSesion()">Cerrar sesion</button>
       </div>
     </div>
   </mat-toolbar>

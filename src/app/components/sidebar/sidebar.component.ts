@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Categoria } from 'src/app/model/categoria';
 import { CategoriaService } from 'src/app/services/categoria.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,9 +12,14 @@ export class SidebarComponent {
 
   constructor(private categoriaService:CategoriaService){}
 
-  ngOnInit(){
+  categorias:Categoria[];
 
-    
+  ngOnInit():void{
+    this.categoriaService.obtenerCategorias().subscribe((data:Categoria[])=>{
+      this.categorias = data;
+    },()=>{
+      Swal.fire("Error al cargar","Error al cargar categorias de posts","error");
+    })
   }
 
 }
