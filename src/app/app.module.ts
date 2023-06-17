@@ -15,6 +15,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciar-sesion.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 @NgModule({
@@ -22,6 +25,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     NavbarComponent,
     IniciarSesionComponent,
+    DashboardComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [TokenInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

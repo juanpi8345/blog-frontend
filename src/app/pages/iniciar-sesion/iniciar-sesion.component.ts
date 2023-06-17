@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { Observable, Subscription } from 'rxjs';
 import { interval } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -16,13 +17,13 @@ export class IniciarSesionComponent {
   user: Usuario = new Usuario();
   buttonDisabled: boolean = true;
   subscription: Subscription;
-  constructor(private loginService: LoginService, private snack: MatSnackBar) { }
+  constructor(private loginService: LoginService, private snack: MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
 
     const source = interval(1000); 
     this.subscription = source.subscribe(() => {
-      if (this.user.username != '' && this.user.password != '') {
+      if (this.user.username != ''&& this.user.username != undefined && this.user.password != '' && this.user.username != undefined) {
         this.buttonDisabled = false;
       }else{
         this.buttonDisabled = true;
