@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class AgregarPublicacionComponent {
 
-  constructor(private publiacionService: PublicacionService, private snack: MatSnackBar,
+  constructor(private publicacionService: PublicacionService, private snack: MatSnackBar,
     private loginService: LoginService, private route: ActivatedRoute, private router:Router) { }
 
   publicacion: Publicacion = new Publicacion();
@@ -25,18 +25,21 @@ export class AgregarPublicacionComponent {
 
   ngOnInit(): void {
     this.user = this.loginService.getUser();
+    console.log(this.user.usuarioId)
     this.categoriaId = this.route.snapshot.params['categoriaId'];
+    console.log(this.categoriaId);
   
   }
 
   agregarPublicacion() {
-    if (this.publicacion.titulo.length >= 3 && this.publicacion.descripcion.length >= 10
-      && this.publicacion.contenido.length >= 20) {
-      this.publiacionService.guardarPublicacion(this.user.usuarioId, this.categoriaId, this.publicacion).subscribe(() => {
+    if (this.publicacion.titulo.length >= 3 || this.publicacion.titulo.length <= 15 
+      && this.publicacion.descripcion.length >= 10 || this.publicacion.descripcion.length <= 30
+      && this.publicacion.contenido.length >= 20 || this.publicacion.contenido.length <=300) {
+      this.publicacionService.guardarPublicacion(this.user.usuarioId, this.categoriaId, this.publicacion).subscribe(() => {
         Swal.fire("Publicacion añadida con exito!","La publicacion se guardo correctamente","success");
         this.router.navigate(['/dashboard']);
       },()=>{
-        this.snack.open("Error al guardar categoria","Aceptar",{
+        this.snack.open("Error al guardar publicacion","Aceptar",{
           duration:3000
         })
       })

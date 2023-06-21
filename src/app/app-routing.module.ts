@@ -6,6 +6,7 @@ import { RegistrarseComponent } from './pages/registrarse/registrarse.component'
 import { AgregarCategoriaComponent } from './pages/agregar-categoria/agregar-categoria.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar-publicacion.component';
+import { PublicacionComponent } from './pages/publicacion/publicacion.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'dashboard',component:DashboardComponent,children:[
     {path:'agregar-categoria',component:AgregarCategoriaComponent},
     {path:'categoria/:categoriaId',component:CategoriaComponent},
-    {path:'agregar-publicacion/:categoriaId',component:AgregarPublicacionComponent}
+    {path:'agregar-publicacion/:categoriaId',component:AgregarPublicacionComponent},
+    {path:'publicacion/:publicacionId',component:PublicacionComponent}
   ]}
 ];
 

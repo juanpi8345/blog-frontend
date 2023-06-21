@@ -1,6 +1,9 @@
 export class Publicacion {
     publicacionId:number;
     titulo:string;
+    fechaCreacion : Date = new Date();
+    fechaActualizacion: Date = new Date() ;
     descripcion:string;
     contenido:string;
+    fechaFormateada : string ;
 }

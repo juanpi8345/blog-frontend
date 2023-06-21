@@ -23,6 +23,9 @@ import { RegistrarseComponent } from './pages/registrarse/registrarse.component'
 import { AgregarCategoriaComponent } from './pages/agregar-categoria/agregar-categoria.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar-publicacion.component';
+import { PublicacionComponent } from './pages/publicacion/publicacion.component';
+import { ComentariosComponent } from './components/comentarios/comentarios.component';
+
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar
     AgregarCategoriaComponent,
     CategoriaComponent,
     AgregarPublicacionComponent,
+    PublicacionComponent,
+    ComentariosComponent,
+   
   ],
   imports: [
     BrowserModule,

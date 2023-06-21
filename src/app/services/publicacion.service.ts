@@ -16,6 +16,10 @@ export class PublicacionService {
     return this.http.get(this.apiUrl + "categoria/"+categoriaId)
   }
 
+  public obtenerPublicacionPorId(publicacionId:number){
+    return this.http.get(this.apiUrl+publicacionId )
+  }
+
   public guardarPublicacion(usuarioId:number, categoriaId:number, publicacion:Publicacion){
     return this.http.post(this.apiUrl + "usuario/"+usuarioId+"/categoria/"+categoriaId,publicacion);
   }

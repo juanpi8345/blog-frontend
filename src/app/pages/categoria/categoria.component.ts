@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { Publicacion } from 'src/app/model/publicacion';
 import { PublicacionService } from 'src/app/services/publicacion.service';
@@ -11,20 +11,32 @@ import { PublicacionService } from 'src/app/services/publicacion.service';
 })
 export class CategoriaComponent {
 
-  constructor(private route: ActivatedRoute, private publicacionService: PublicacionService) { }
+  constructor(private route: ActivatedRoute, private publicacionService: PublicacionService, private router:Router) { }
+
   categoriaId: number;
   suscription: Subscription;
   publicaciones: Publicacion[];
+  fecha: Date = new Date();
 
   ngOnInit(): void {
-    this.categoriaId = this.route.snapshot.params['categoriaId'];
-    const source = interval(500);
-    this.suscription = source.subscribe(() => {
-      this.categoriaId = this.route.snapshot.params['categoriaId'];
-    });
-    this.publicacionService.obtenerPublicacionesPorCategoria(this.categoriaId).subscribe((publicacion: Publicacion[]) => {
-      this.publicaciones = publicacion;
-    });
+    this.route.params.subscribe(params => {
+      this.categoriaId = params['categoriaId'];
+      this.publicacionService.obtenerPublicacionesPorCategoria(this.categoriaId).subscribe((publicaciones: Publicacion[]) => {
+        this.publicaciones = publicaciones;
+        for (let i = 0; i < publicaciones.length; i++) {
+          this.fecha = new Date(this.publicaciones[i].fechaCreacion);
+          const año = this.fecha.getFullYear();
+          const mes = this.fecha.getMonth() + 1;
+          const dia = this.fecha.getDate();
+          this.publicaciones[i].fechaFormateada = `${año}/${mes}/${dia}`;
+        }
+      });
+    })
   }
 
+  verPublicacion(publicacionId:number){
+    this.router.navigate(['/dashboard/publicacion/'+publicacionId]);
+  }
 }
+
+
