@@ -6,4 +6,5 @@ export class Publicacion {
     descripcion:string;
     contenido:string;
     fechaFormateada : string ;
+    fechaActualizacionFormateada : string ;
 }

@@ -7,12 +7,13 @@ import { AgregarCategoriaComponent } from './pages/agregar-categoria/agregar-cat
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar-publicacion.component';
 import { PublicacionComponent } from './pages/publicacion/publicacion.component';
+import { GuardGuard } from './services/guard.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
   {path:'iniciar-sesion',component:IniciarSesionComponent},
   {path:'registrarse',component:RegistrarseComponent},
-  {path: 'dashboard',component:DashboardComponent,children:[
+  {path: 'dashboard', canActivate:[GuardGuard],component:DashboardComponent,children:[
     {path:'agregar-categoria',component:AgregarCategoriaComponent},
     {path:'categoria/:categoriaId',component:CategoriaComponent},
     {path:'agregar-publicacion/:categoriaId',component:AgregarPublicacionComponent},

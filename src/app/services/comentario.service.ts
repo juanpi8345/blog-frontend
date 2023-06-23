@@ -19,5 +19,9 @@ export class ComentarioService {
     return this.http.get(this.apiUrl + "publicacion/"+publicacionId);
   }
 
+  public eliminarComentario(comentarioId:number){
+    return this.http.delete(this.apiUrl + comentarioId);
+  }
+
   
 }

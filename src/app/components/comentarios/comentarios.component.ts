@@ -19,24 +19,27 @@ export class ComentariosComponent {
   comentarios:Comentario[];
   comentario: Comentario = new Comentario();
   usuario: Usuario = new Usuario();
+  usuarioRol : string;
   publicacionId: number;
 
   ngOnInit(): void {
     this.usuario = this.loginService.getUser();
+    this.usuarioRol = this.loginService.getUserRol();
     this.publicacionId = this.route.snapshot.params['publicacionId'];
     this.comentarioService.obtenerComentariosDeLaPublicacion(this.publicacionId).subscribe((comentarios:Comentario[])=>{
       this.comentarios = comentarios;
-      console.log(this.usuario)
-      console.log(this.comentarios)
+      console.log(this.comentarios[0])
     })
   }
-
-
+  
   comentar() {
     if (this.comentario.descripcion.length > 0) {
       this.comentarioService.comentar(this.comentario, this.publicacionId, this.usuario.usuarioId).subscribe((comentario:Comentario) => {
         Swal.fire("Comentario realizado", "Comentario realizado con exito", "success");
-        this.comentarios.push(comentario);
+
+        this.comentarioService.obtenerComentariosDeLaPublicacion(this.publicacionId).subscribe((comentarios:Comentario[])=>{
+          this.comentarios = comentarios;
+        })
         this.comentario.descripcion = "";
       })
     } else {
@@ -44,6 +47,30 @@ export class ComentariosComponent {
         duration: 3000
       })
     }
+  }
+
+  eliminarComentario(comentarioId:number){
+    Swal.fire({
+      title: 'Eliminar comentario',
+      text: '¿Estas seguro de que queres eliminar este comentario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(resultado => {
+      if (resultado.isConfirmed) {
+        this.comentarioService.eliminarComentario(comentarioId).subscribe(()=>{
+          this.comentarioService.obtenerComentariosDeLaPublicacion(this.publicacionId).subscribe((comentarios:Comentario[])=>{
+            this.comentarios = comentarios;
+          })
+        },()=>this.snack.open("Error al eliminar comentario","Aceptar",{
+          duration:3000
+        }));
+        
+      }
+    });
   }
 
 }

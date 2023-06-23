@@ -2,7 +2,9 @@
     <div class="container">
         <h1 class="fs-2" style="color:coral">{{publicacion.titulo}}</h1>
         <p class="fs-7 mt-2">{{publicacion.descripcion}}</p>
-        <p class="fs-5 mt-4">{{publicacion.contenido}}</p>
+        <p class="fs-5 mt-3 mb-4">{{publicacion.contenido}}</p>
+        <h5>Fecha creacion: {{publicacion.fechaFormateada}}</h5>
+        <h5>Fecha actualizacion: {{publicacion.fechaActualizacionFormateada}}</h5>
     </div>
 </mat-card>
 <app-comentarios></app-comentarios>

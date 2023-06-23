@@ -23,6 +23,7 @@ export class CategoriaComponent {
       this.categoriaId = params['categoriaId'];
       this.publicacionService.obtenerPublicacionesPorCategoria(this.categoriaId).subscribe((publicaciones: Publicacion[]) => {
         this.publicaciones = publicaciones;
+        console.log(this.publicaciones)
         for (let i = 0; i < publicaciones.length; i++) {
           this.fecha = new Date(this.publicaciones[i].fechaCreacion);
           const año = this.fecha.getFullYear();

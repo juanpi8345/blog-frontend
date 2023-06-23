@@ -25,10 +25,7 @@ export class AgregarPublicacionComponent {
 
   ngOnInit(): void {
     this.user = this.loginService.getUser();
-    console.log(this.user.usuarioId)
     this.categoriaId = this.route.snapshot.params['categoriaId'];
-    console.log(this.categoriaId);
-  
   }
 
   agregarPublicacion() {

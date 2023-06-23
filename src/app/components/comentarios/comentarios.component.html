@@ -1,15 +1,16 @@
-<mat-card class="p-3 mt-4 aparecer">
+<mat-card class="p-3 mt-4 mb-4 aparecer">
     <div class="container">
         <h1 class="fs-2" style="color:coral">Comentarios</h1>
-        <mat-card class="p-2 mt-3 mb-3" *ngFor="let comentario of comentarios">
+        <mat-card class="p-2 mt-4 mb-4 mat-card-comentarios" *ngFor="let comentario of comentarios">
             <div class="container-fluid">
-                <h2>{{comentario.autor}}</h2>
-                <p>{{comentario.descripcion}}</p>
-                <button mat-stroked-button color="accent" *ngIf="usuario.username === comentario.autor"
-                    class="mt-2 mb-2">Eliminar comentario</button>
+                <h2>{{comentario.autor}} (<span style="color:coral">{{(comentario.autoridades[0].authority).toLowerCase()}}</span>)</h2>
+                <div class="d-flex justify-content-between">
+                    <p>{{comentario.descripcion}}</p>
+                    <mat-icon class="mat-18" style="color:coral" *ngIf="usuario.username === comentario.autor || usuarioRol === 'ADMIN'" 
+                    (click)="eliminarComentario(comentario.comentarioId)">delete</mat-icon>
+                </div>
             </div>
         </mat-card>
-        <mat-divider></mat-divider>
         <div class="row">
             <div class="col-md-12">
                 <form (ngSubmit)="comentar()">
@@ -18,7 +19,7 @@
                         <input type="text" matInput placeholder="Ingrese su comentario" name="descripcion"
                             [(ngModel)]="comentario.descripcion">
                     </mat-form-field>
-                    <button mat-stroked-button color="warn">Comentar</button>
+                    <button mat-stroked-button color="warn" class="mt-1 mb-1">Comentar</button>
                 </form>
             </div>
         </div>
