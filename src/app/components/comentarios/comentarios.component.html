@@ -1,20 +1,28 @@
-<mat-card class="p-3 mt-3 aparecer">
+<mat-card class="p-3 mt-4 aparecer">
     <div class="container">
         <h1 class="fs-2" style="color:coral">Comentarios</h1>
-        <!-- Comentarios -->
+        <mat-card class="p-2 mt-3 mb-3" *ngFor="let comentario of comentarios">
+            <div class="container-fluid">
+                <h2>{{comentario.autor}}</h2>
+                <p>{{comentario.descripcion}}</p>
+                <button mat-stroked-button color="accent" *ngIf="usuario.username === comentario.autor"
+                    class="mt-2 mb-2">Eliminar comentario</button>
+            </div>
+        </mat-card>
         <mat-divider></mat-divider>
         <div class="row">
             <div class="col-md-12">
-                <form>
+                <form (ngSubmit)="comentar()">
                     <mat-form-field class="w-100 mt-3">
-                    <mat-label>Escriba aqui para realizar un comentario</mat-label>
-                       <input type="text" matInput required placeholder="Ingrese su comentario">
+                        <mat-label>Escriba aqui para realizar un comentario</mat-label>
+                        <input type="text" matInput placeholder="Ingrese su comentario" name="descripcion"
+                            [(ngModel)]="comentario.descripcion">
                     </mat-form-field>
                     <button mat-stroked-button color="warn">Comentar</button>
                 </form>
             </div>
         </div>
 
-      
+
     </div>
 </mat-card>
