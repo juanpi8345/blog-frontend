@@ -28,5 +28,10 @@ export class PublicacionService {
     return this.http.delete(this.apiUrl + "publicacion/"+publicacionId);
   }
 
+  public editarPublicacion(usuarioId:number, publicacion:Publicacion){
+    publicacion.autor = null;
+    return this.http.put(this.apiUrl + "usuario/"+usuarioId, publicacion);
+  }
+
 
 }

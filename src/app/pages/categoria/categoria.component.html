@@ -13,7 +13,8 @@
 
                             <mat-icon class="me-2" style="color: red;" *ngIf="publicacion.autor.username === usuario.username || usuarioRol === 'ADMIN'"
                             (click)="eliminarPublicacion(publicacion.publicacionId)">delete</mat-icon>
-                            <mat-icon style="color:darkgray" *ngIf="publicacion.autor.username === usuario.username">edit</mat-icon>
+                            <mat-icon style="color:darkgray" *ngIf="publicacion.autor.username === usuario.username"
+                            (click)="editarPublicacion(publicacion.publicacionId)">edit</mat-icon>
 
                         </div>
                         <h4>Publicacion creada por: <span style="color:coral">{{publicacion.autor.username}}</span></h4>

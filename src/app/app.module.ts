@@ -26,6 +26,7 @@ import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar
 import { PublicacionComponent } from './pages/publicacion/publicacion.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
 import { GuardGuard } from './services/guard.guard';
+import { EditarPublicacionComponent } from './pages/editar-publicacion/editar-publicacion.component';
 
 
 
@@ -42,6 +43,7 @@ import { GuardGuard } from './services/guard.guard';
     AgregarPublicacionComponent,
     PublicacionComponent,
     ComentariosComponent,
+    EditarPublicacionComponent,
    
   ],
   imports: [

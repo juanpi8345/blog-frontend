@@ -70,6 +70,10 @@ export class CategoriaComponent {
       }
     });
   }
+
+  editarPublicacion(publicacionId:number){
+    this.router.navigate(['/dashboard/editar-publicacion/'+publicacionId]);
+  }
 }
 
 

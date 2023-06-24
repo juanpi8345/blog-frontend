@@ -1,3 +1,4 @@
+import { Categoria } from "./categoria";
 import { Usuario } from "./usuario";
 
 export class Publicacion {
@@ -10,4 +11,5 @@ export class Publicacion {
     fechaFormateada : string ;
     fechaActualizacionFormateada : string ;
     autor:Usuario;
+    categoria:Categoria;
 }

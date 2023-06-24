@@ -8,6 +8,7 @@ import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { AgregarPublicacionComponent } from './pages/agregar-publicacion/agregar-publicacion.component';
 import { PublicacionComponent } from './pages/publicacion/publicacion.component';
 import { GuardGuard } from './services/guard.guard';
+import { EditarPublicacionComponent } from './pages/editar-publicacion/editar-publicacion.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -17,7 +18,8 @@ const routes: Routes = [
     {path:'agregar-categoria',component:AgregarCategoriaComponent},
     {path:'categoria/:categoriaId',component:CategoriaComponent},
     {path:'agregar-publicacion/:categoriaId',component:AgregarPublicacionComponent},
-    {path:'publicacion/:publicacionId',component:PublicacionComponent}
+    {path:'publicacion/:publicacionId',component:PublicacionComponent},
+    {path:'editar-publicacion/:publicacionId',component:EditarPublicacionComponent}
   ]}
 ];
 
