@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { Publicacion } from 'src/app/model/publicacion';
+import { Usuario } from 'src/app/model/usuario';
+import { LoginService } from 'src/app/services/login.service';
 import { PublicacionService } from 'src/app/services/publicacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categoria',
@@ -11,19 +15,24 @@ import { PublicacionService } from 'src/app/services/publicacion.service';
 })
 export class CategoriaComponent {
 
-  constructor(private route: ActivatedRoute, private publicacionService: PublicacionService, private router:Router) { }
+  constructor(private route: ActivatedRoute, private publicacionService: PublicacionService, private router:Router, private loginService:LoginService,
+    private snack:MatSnackBar) { }
 
   categoriaId: number;
   suscription: Subscription;
   publicaciones: Publicacion[];
   fecha: Date = new Date();
+  usuario:Usuario;
+  usuarioRol : string;
 
   ngOnInit(): void {
+    this.usuario = this.loginService.getUser();
+    this.usuarioRol = this.loginService.getUserRol();
     this.route.params.subscribe(params => {
       this.categoriaId = params['categoriaId'];
       this.publicacionService.obtenerPublicacionesPorCategoria(this.categoriaId).subscribe((publicaciones: Publicacion[]) => {
         this.publicaciones = publicaciones;
-        console.log(this.publicaciones)
+        console.log(publicaciones)
         for (let i = 0; i < publicaciones.length; i++) {
           this.fecha = new Date(this.publicaciones[i].fechaCreacion);
           const año = this.fecha.getFullYear();
@@ -37,6 +46,29 @@ export class CategoriaComponent {
 
   verPublicacion(publicacionId:number){
     this.router.navigate(['/dashboard/publicacion/'+publicacionId]);
+  }
+
+  eliminarPublicacion(publicacionId:number){
+    Swal.fire({
+      title: 'Eliminar publicacion',
+      text: '¿Estas seguro de que queres eliminar esta publicacion?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(resultado => {
+      if (resultado.isConfirmed) {
+        this.publicacionService.eliminarPublicacion(publicacionId).subscribe(()=>{
+          this.publicacionService.obtenerPublicacionesPorCategoria(this.categoriaId).subscribe((publicaciones:Publicacion[])=>{
+            this.publicaciones = publicaciones;
+          })
+        },()=>this.snack.open("Error al eliminar publicacion","Aceptar",{
+          duration:3000
+        }))
+      }
+    });
   }
 }
 

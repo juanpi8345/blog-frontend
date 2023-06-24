@@ -1,6 +1,10 @@
 <mat-card class="p-3 aparecer">
     <div class="container">
-        <h1 class="fs-2" style="color:coral">{{publicacion.titulo}}</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="fs-2" style="color:coral">{{publicacion.titulo}}</h1>
+            <h4>Publicacion creada por: <span style="color:coral">{{publicacion.autor.username}}</span> </h4>
+        </div>
+       
         <p class="fs-7 mt-2">{{publicacion.descripcion}}</p>
         <p class="fs-5 mt-3 mb-4">{{publicacion.contenido}}</p>
         <h5>Fecha creacion: {{publicacion.fechaFormateada}}</h5>

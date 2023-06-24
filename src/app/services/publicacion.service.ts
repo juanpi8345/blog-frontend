@@ -24,5 +24,9 @@ export class PublicacionService {
     return this.http.post(this.apiUrl + "usuario/"+usuarioId+"/categoria/"+categoriaId,publicacion);
   }
 
+  public eliminarPublicacion(publicacionId:number){
+    return this.http.delete(this.apiUrl + "publicacion/"+publicacionId);
+  }
+
 
 }
