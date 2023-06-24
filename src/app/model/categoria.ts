@@ -1,4 +1,8 @@
+import { Usuario } from "./usuario";
+
 export class Categoria {
     nombre : string = ''; 
-    categoriaId;
+    categoriaId : number;
+    autor : Usuario;
+
 }

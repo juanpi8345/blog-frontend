@@ -18,4 +18,8 @@ export class CategoriaService {
   public agregarCategoria(categoria:Categoria){
     return this.http.post(this.apiUrl , categoria);
   }
+
+  public eliminarCategoria(categoriaId : number){
+    return this.http.delete(this.apiUrl + categoriaId);
+  }
 }

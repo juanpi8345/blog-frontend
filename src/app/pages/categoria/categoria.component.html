@@ -11,26 +11,30 @@
                             <button mat-raised-button color="warn" class="mb-3 mt-2 me-2"
                                 (click)="verPublicacion(publicacion.publicacionId)">Ver publicacion</button>
 
-                            <mat-icon class="me-2" style="color: red;" *ngIf="publicacion.autor.username === usuario.username || usuarioRol === 'ADMIN'"
-                            (click)="eliminarPublicacion(publicacion.publicacionId)">delete</mat-icon>
+                            <mat-icon class="me-2" style="color: red;"
+                                *ngIf="publicacion.autor.username === usuario.username || usuarioRol === 'ADMIN'"
+                                (click)="eliminarPublicacion(publicacion.publicacionId)">delete</mat-icon>
                             <mat-icon style="color:darkgray" *ngIf="publicacion.autor.username === usuario.username"
-                            (click)="editarPublicacion(publicacion.publicacionId)">edit</mat-icon>
-
+                                (click)="editarPublicacion(publicacion.publicacionId)">edit</mat-icon>
                         </div>
                         <h4>Publicacion creada por: <span style="color:coral">{{publicacion.autor.username}}</span></h4>
                     </div>
-
                 </div>
             </div>
             <mat-divider class="mb-3"></mat-divider>
         </div>
-
         <div *ngIf="publicaciones.length == 0" class="aparecer">
-            <h1>No hay publicaciones en esta categoria...</h1>
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>No hay publicaciones en esta categoria...</h1>
+                <button mat-raised-button *ngIf="usuarioRol === 'ADMIN'" color="warn" style="background-color: red;"
+                    (click)="eliminarCategoria(categoriaId)">Eliminar categoria</button>
+            </div>
         </div>
         <button mat-stroked-button color="warn" class="mt-3"
             [routerLink]="'/dashboard/agregar-publicacion/'+categoriaId">
             <mat-icon>add</mat-icon>Agregar publicacion
         </button>
+        <button mat-raised-button *ngIf="usuarioRol === 'ADMIN'" color="warn" style="background-color: red;" 
+        (click)="eliminarCategoria(categoriaId)" class="mt-3 ms-3">Eliminar categoria</button>
     </div>
 </mat-card>

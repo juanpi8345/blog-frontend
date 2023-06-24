@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../model/usuario';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   public loginStatusSubject = new Subject<any>();
 

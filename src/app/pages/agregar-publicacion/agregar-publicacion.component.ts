@@ -34,7 +34,7 @@ export class AgregarPublicacionComponent {
       && this.publicacion.contenido.length >= 20 || this.publicacion.contenido.length <=300) {
       this.publicacionService.guardarPublicacion(this.user.usuarioId, this.categoriaId, this.publicacion).subscribe(() => {
         Swal.fire("Publicacion añadida con exito!","La publicacion se guardo correctamente","success");
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/categoria/'+this.categoriaId]);
       },()=>{
         this.snack.open("Error al guardar publicacion","Aceptar",{
           duration:3000
